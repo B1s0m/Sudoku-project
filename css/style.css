@@ -1,9 +1,7 @@
-*{
-      box-sizing: border-box;
+* {
+  box-sizing: border-box;
 
 }
-
-
 
 body {
   background-color: #FFFFFF;
@@ -14,18 +12,20 @@ body {
   align-items: center;
 }
 
-  /* board game */
+/* board game */
 .board {
   display: flex;
   flex-wrap: wrap;
-  width: 450px;   
+  width: 450px;
   height: 450px;
   border: 4px solid black;
+  border-right: 2px solid black; ;
 }
 
 /*  Each cells*/
 .sqr {
-  width: 11.11%;   /* 100 / 9 */
+  width: 11.11%;
+  /* 100 / 9 */
   aspect-ratio: 1/1;
   display: flex;
   align-items: center;
@@ -34,3 +34,16 @@ body {
   font-size: 20px;
   border: 1px solid #8E95A0;
 }
+
+/* Vertical lines */
+.sqr:nth-child(3n) {
+  border-right: 4px solid black;
+}
+
+/* horizontal lines */
+.box1:nth-child(n+19), .box2:nth-child(n+19) ,.box3:nth-child(n+19) ,.box4:nth-child(n+46) ,.box5:nth-child(n+46) ,.box6:nth-child(n+46){
+   border-bottom: 3px solid black;
+}
+
+
+
