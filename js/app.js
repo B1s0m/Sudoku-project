@@ -1,6 +1,5 @@
 const board = document.querySelector('.board');
 
-// console.log(board)
 
 /// create board 
 let c = 1;
@@ -41,33 +40,132 @@ for (let i = 1; i <= 9; i++) {
     
 }
 
+// board values 
+let boarD=[]
+for (let index = 1; index <=81 ; index++) {
+    boarD.push("")
+    
+}
+
+
+const boardAnswer = [
+  5, 3, 4, 6, 7, 8, 9, 1, 2,
+  6, 7, 2, 1, 9, 5, 3, 4, 8,
+  1, 9, 8, 3, 4, 2, 5, 6, 7,
+
+  8, 5, 9, 7, 6, 1, 4, 2, 3,
+  4, 2, 6, 8, 5, 3, 7, 9, 1,
+  7, 1, 3, 9, 2, 4, 8, 5, 6,
+
+  9, 6, 1, 5, 3, 7, 2, 8, 4,
+  2, 8, 7, 4, 1, 9, 6, 3, 5,
+  3, 4, 5, 2, 8, 6, 1, 7, 9
+];
+
+
+
+
+
+// console.log(boardAnswer)
+
 const squareEls  = document.querySelectorAll('.sqr');
 const Numbers  = document.querySelectorAll('.num');
 
 let selectdNumbers=null ;
 
-function handleClick(event) {
 
-    if(event.target.classList.contains("num"))  {
-         selectdNumbers = event.target.textContent;
-        console.log("Selected:",selectdNumbers)  
-        return ;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const randomNumber = Math.floor(Math.random() * 9) + 1;
+
+// console.log(randomNumber);
+
+
+
+
+/*-------------------------------- Functions --------------------------------*/
+
+
+function updateBoard() {
+    // loop through the board variable using forEach
+
+    boarD.forEach((cell, index) => {
+        squareEls[index].textContent = cell
+    })
+}
+
+function init() {
+    console.log('init game')
+
+    updateBoard()
+}
+
+
+
+
+function checkBoard(numb,ind) {
+
+//   console.log(numb +"  "+  ind)
     
+if(boardAnswer[ind-1] == numb  ){
+    return true
+} else return false
     
-    if (event.target.classList.contains("sqr")) {
-                
-        if(selectdNumbers==null)
-          {return}
-   
-        event.target.textContent = selectdNumbers;
-    }    
-   selectdNumbers=null
     
 }
 
 
 
+
+
+
+
+function handleClick(event) {
+    
+    if(event.target.classList.contains("num"))  {
+        selectdNumbers = event.target.textContent;
+        console.log("Selected:",selectdNumbers)   
+        return ;
+    }
+    
+    
+    if (event.target.classList.contains("sqr")) {
+        
+        if(selectdNumbers==null)
+            {return}
+        if(checkBoard(selectdNumbers,event.target.id))
+        event.target.textContent = selectdNumbers;
+    }    
+    selectdNumbers=null
+    
+}
+
+
+
+
+
+
+
+
+
+
+init()
+    /*----------------------------- Event Listeners -----------------------------*/
 
 squareEls.forEach((sql)=>{
  sql.addEventListener('click', handleClick)
