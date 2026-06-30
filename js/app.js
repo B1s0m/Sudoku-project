@@ -41,11 +41,23 @@ for (let i = 1; i <= 9; i++) {
 }
 
 // board values 
-let boarD=[]
-for (let index = 1; index <=81 ; index++) {
-    boarD.push("")
+let boarD=[
+  5, 3, "", 6, 7, "", "", 1, 2,
+  "", "", "", 1, "", 5, 3, 4, 8,
+  "", "", "", 3, 4, "", 5, 6, 7,
+
+  "", "", "", "", "", "", "", 2, 3,
+  4, "", 6, 8, 5, "", "", "", "",
+  7, "", 3, "", "", 4, "", 5, 6,
+
+  9, "", 1, 5, 3, 7, 2, 8, 4,
+  2, "", 7, 4, "", 9, 6, "", 5,
+  3, 4, 5, "", 8, 6, "", "", 9
+];
+// for (let index = 1; index <=81 ; index++) {
+//     boarD.push("")
     
-}
+// }
 
 
 const boardAnswer = [
@@ -75,28 +87,12 @@ let selectdNumbers=null ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const randomNumber = Math.floor(Math.random() * 9) + 1;
 
 // console.log(randomNumber);
 
 
-
+let boxcolor;
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -123,9 +119,13 @@ function checkBoard(numb,ind) {
 //   console.log(numb +"  "+  ind)
     
 if(boardAnswer[ind-1] == numb  ){
+      event.target.style.backgroundColor = "#FFFFFF"
     return true
-} else return false
-    
+} else{ 
+  event.target.style.backgroundColor = "#F9B4C0"
+  
+     return false
+}
     
 }
 
@@ -145,12 +145,23 @@ function handleClick(event) {
     
     
     if (event.target.classList.contains("sqr")) {
-        
+        // console.log (event.target.classList)
+        boxcolor = event.target.classList;
+      let boxC=document.querySelectorAll('.'+boxcolor[1]);
+        //  boxcolor[1].style.backgroundColor ="#BBDEFB"
+         boxC.forEach((b)=>{
+            b.style.backgroundColor ="#BBDEFB"
+
+         })
+
+        event.target.style.backgroundColor ="#BBDEFB"
         if(selectdNumbers==null)
             {return}
         if(checkBoard(selectdNumbers,event.target.id))
+            
         event.target.textContent = selectdNumbers;
-    }    
+    }   
+     
     selectdNumbers=null
     
 }
