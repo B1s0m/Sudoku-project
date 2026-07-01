@@ -1,7 +1,8 @@
 const board = document.querySelector('.board');
 const Mistakec = document.querySelector('.Mistakes');
-const timerEl  = document.querySelector('.time');
+const timerEl = document.querySelector('.time');
 
+const btn = document.querySelector('#btn')
 
 /// create board 
 let c = 1;
@@ -65,24 +66,36 @@ const boardAnswer = [
 
 
 
- //  set time 
+//  set time 
 
- let seconds = 0;
+let timer;
+let seconds = 0;
 
-const timer = setInterval(() => {
-    seconds++;
+function startTimer() {
+    timer = setInterval(() => {
+        seconds++;
 
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
 
-const minutes = Math.floor(seconds / 60);
- const remainingSeconds = seconds % 60;
+        timerEl.textContent =
+            "Time :" +
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(remainingSeconds).padStart(2, "0");
+    }, 1000);
+}
 
-    timerEl.textContent = "Time :"+
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(remainingSeconds).padStart(2, "0");
-}, 1000);
+function stopTimer() {
+    clearInterval(timer);
+}
 
-
+function resetTimer() {
+    clearInterval(timer);
+    seconds = 0;
+    timerEl.textContent = "Time :00:00";
+    startTimer()
+}
 
 
 const squareEls = document.querySelectorAll('.sqr');
@@ -92,7 +105,7 @@ let selectdNumbers = null;
 
 
 
-
+let gameOver = false;
 let boxcolor;
 let mistake = [];
 
@@ -109,7 +122,7 @@ function updateBoard() {
 
 function init() {
     console.log('init game')
-
+    startTimer()
     updateBoard()
 }
 
@@ -117,7 +130,7 @@ function init() {
 
 
 function checkBoard(numb, ind) {
-    
+
     if (boardAnswer[ind.target.id - 1] == numb) {
 
         ind.target.textContent = selectdNumbers;
@@ -130,8 +143,8 @@ function checkBoard(numb, ind) {
     } else {
         ind.target.style.backgroundColor = "#F9B4C0"
         mistake.push(ind.target.id)
-        Mistakec.textContent="Mistakes :"+mistake.length +"/5";
-
+        Mistakec.textContent = "Mistakes :" + mistake.length + "/5";
+        if (mistake.length == 5) {  stopTimer();  gameOver=true;}
         return false
     }
 
@@ -144,8 +157,11 @@ function checkBoard(numb, ind) {
 
 
 function handleClick(event) {
-    if(mistake.length >=5) {
-        clearInterval(timer); return}  
+if (gameOver  ) 
+    {
+        
+        return;}
+
     if (event.target.classList.contains("num")) {
         // console.log("perboxc olor:",mistake)  
         // mistake .forEach((b)=>{b.style.backgroundColor ="##FFFFFF" })
@@ -175,7 +191,20 @@ function handleClick(event) {
 
 
 
+function Rest() {
+    
+    resetTimer()
 
+    mistake.forEach((e)=>{
+       squareEls[e-1].style.backgroundColor="#FFFFFF"
+    })
+    mistake.length = 0;
+     Mistakec.textContent = "Mistakes :" + mistake.length + "/5";
+     gameOver=false
+    updateBoard()
+
+    
+}                                                                                                                 
 
 
 
@@ -197,6 +226,6 @@ Numbers.forEach((num) => {
 
 
 
-
+btn.addEventListener('click', Rest)
 
 

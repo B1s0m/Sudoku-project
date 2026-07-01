@@ -112,3 +112,27 @@ h1 {
 
 }
 
+.num:hover{
+       background-color: #45a049;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+#btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 12px;
+}
+
+#btn:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
