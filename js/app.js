@@ -1,5 +1,6 @@
 const board = document.querySelector('.board');
 const Mistakec = document.querySelector('.Mistakes');
+const timerEl  = document.querySelector('.time');
 
 
 /// create board 
@@ -46,10 +47,6 @@ let boarD = [
     2, "", 7, 4, "", 9, 6, "", 5,
     3, 4, 5, "", 8, 6, "", "", 9
 ];
-// for (let index = 1; index <=81 ; index++) {
-//     boarD.push("")
-
-// }
 
 
 const boardAnswer = [
@@ -68,9 +65,25 @@ const boardAnswer = [
 
 
 
+ //  set time 
+
+ let seconds = 0;
+
+const timer = setInterval(() => {
+    seconds++;
 
 
-// console.log(boardAnswer)
+const minutes = Math.floor(seconds / 60);
+ const remainingSeconds = seconds % 60;
+
+    timerEl.textContent = "Time :"+
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(remainingSeconds).padStart(2, "0");
+}, 1000);
+
+
+
 
 const squareEls = document.querySelectorAll('.sqr');
 const Numbers = document.querySelectorAll('.num');
@@ -79,14 +92,9 @@ let selectdNumbers = null;
 
 
 
-// const randomNumber = Math.floor(Math.random() * 9) + 1;
-
-// console.log(randomNumber);
-
 
 let boxcolor;
-let mistake;
-let perboxcolor = [];
+let mistake = [];
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -121,9 +129,9 @@ function checkBoard(numb, ind) {
         return true
     } else {
         ind.target.style.backgroundColor = "#F9B4C0"
-        //   mistake++;
-        perboxcolor.push(ind.target.id)
-        console.log(perboxcolor)
+        mistake.push(ind.target.id)
+        Mistakec.textContent="Mistakes :"+mistake.length +"/5";
+
         return false
     }
 
@@ -136,11 +144,11 @@ function checkBoard(numb, ind) {
 
 
 function handleClick(event) {
-     Mistakec.textContent="Mistakes :"+perboxcolor.length +"/3";
+    if(mistake.length >=5) {return}  
     if (event.target.classList.contains("num")) {
-        // console.log("perboxc olor:",perboxcolor)  
-        // perboxcolor .forEach((b)=>{b.style.backgroundColor ="##FFFFFF" })
-        // perboxcolor
+        // console.log("perboxc olor:",mistake)  
+        // mistake .forEach((b)=>{b.style.backgroundColor ="##FFFFFF" })
+        // mistake
         // boxC.forEach((b)=>{b.style.backgroundColor ="#FFFFFF" }) 
         selectdNumbers = event.target.textContent;
         console.log("Selected:", selectdNumbers)
