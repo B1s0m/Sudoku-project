@@ -227,7 +227,7 @@ function stopTimerFun(event) {
     
   }
   if (event.target.id == "Stop") {
-     puse()
+    //  puse()
      event.target.style.display="none"
      stopTimerEl.forEach((e)=>{
         if(e.id == "Start"){
