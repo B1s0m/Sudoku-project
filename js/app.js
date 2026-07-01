@@ -144,7 +144,8 @@ function checkBoard(numb, ind) {
 
 
 function handleClick(event) {
-    if(mistake.length >=5) {return}  
+    if(mistake.length >=5) {
+        clearInterval(timer); return}  
     if (event.target.classList.contains("num")) {
         // console.log("perboxc olor:",mistake)  
         // mistake .forEach((b)=>{b.style.backgroundColor ="##FFFFFF" })
