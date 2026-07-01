@@ -82,7 +82,7 @@ h1 {
 .m-t {
   display: flex;
   justify-content: space-around;
-  gap: 60px;
+  gap: 10px;
 }
  /*  this cointener for numbers */
 .Numbers {
@@ -135,4 +135,24 @@ h1 {
 #btn:hover {
     background-color: #45a049;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+.stop {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+#Stop{
+   display: none;
+
+
+
 }

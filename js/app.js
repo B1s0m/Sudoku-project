@@ -1,6 +1,7 @@
 const board = document.querySelector('.board');
 const Mistakec = document.querySelector('.Mistakes');
 const timerEl = document.querySelector('.time');
+const stopTimerEl = document.querySelectorAll('.stop');
 
 const btn = document.querySelector('#btn')
 
@@ -70,6 +71,7 @@ const boardAnswer = [
 
 let timer;
 let seconds = 0;
+let stopGame=false;
 
 function startTimer() {
     timer = setInterval(() => {
@@ -85,8 +87,10 @@ function startTimer() {
             String(remainingSeconds).padStart(2, "0");
     }, 1000);
 }
-
+let tstopTimer;
 function stopTimer() {
+    tstopTimer=[... seconds]
+    console.log(tstopTimer)
     clearInterval(timer);
 }
 
@@ -96,7 +100,10 @@ function resetTimer() {
     timerEl.textContent = "Time :00:00";
     startTimer()
 }
-
+function puse() {
+    timer=tstopTimer;
+    
+}
 
 const squareEls = document.querySelectorAll('.sqr');
 const Numbers = document.querySelectorAll('.num');
@@ -205,7 +212,33 @@ function Rest() {
 
     
 }                                                                                                                 
+function stopTimerFun(event) {
+    console.log(event.target.id)
+  if (event.target.id == "Start") {
+     stopTimer() 
 
+     event.target.style.display="none"
+     stopTimerEl.forEach((e)=>{
+        if(e.id == "Stop"){
+                 e.style.display="block"
+
+        } 
+     })
+    
+  }
+  if (event.target.id == "Stop") {
+     puse()
+     event.target.style.display="none"
+     stopTimerEl.forEach((e)=>{
+        if(e.id == "Start"){
+    e.style.display="block"
+
+        } 
+     })
+    
+  }
+  
+}
 
 
 
@@ -227,5 +260,11 @@ Numbers.forEach((num) => {
 
 
 btn.addEventListener('click', Rest)
+
+stopTimerEl.forEach((e)=>{
+    
+   e.addEventListener('click', stopTimerFun)
+})
+
 
 
