@@ -23,7 +23,7 @@ Sudoku Game is a web-based puzzle game built using HTML, CSS, and JavaScript. Th
 ![alt text](image-1.png)
 
 ![alt text](image-2.png)
-
+![alt text](image-3.png)
 ## Future Enhancements
 
 - Add multiple difficulty levels (Easy, Medium, Hard).
