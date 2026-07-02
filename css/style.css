@@ -5,6 +5,8 @@
 
 body {
   background-color: #FFFFFF;
+  background: linear-gradient(135deg, #dbeafe, #f8fafc);
+
   font-family: system-ui, sans-serif;
   margin: 0;
   display: flex;
@@ -13,24 +15,25 @@ body {
 }
 
 header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   
-    gap: 8px;              
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 header h1,
 header h3,
 header .mes {
-    margin: 0;
+  margin: 0;
 }
 
 .mes {
-    color: #555;
-    font-size: 18px;
+  color: #555;
+  font-size: 18px;
 }
- /*  this cointener for board and helpful-things */
+
+/*  this cointener for board and helpful-things */
 .game {
   /* width: 60%; */
   display: flex;
@@ -62,7 +65,7 @@ header .mes {
   display: flex;
   align-items: center;
   justify-content: center;
- /* font-weight:normal; */
+  /* font-weight:normal; */
   font-size: 26px;
   border: 1px solid #8E95A0;
 }
@@ -83,7 +86,7 @@ header .mes {
 }
 
 
- /*  this cointener for numbers , mistakes and time */
+/*  this cointener for numbers , mistakes and time */
 .helpful-things {
   display: flex;
   flex-direction: column;
@@ -91,19 +94,22 @@ header .mes {
   width: 3000;
 
 }
+
 /*  this cointener for  mistakes and time */
 .m-t {
   display: flex;
   justify-content: space-around;
   gap: 10px;
 }
- /*  this cointener for numbers */
+
+/*  this cointener for numbers */
 .Numbers {
   display: flex;
   flex-wrap: wrap;
   width: 240px;
   gap: 15px;
 }
+
 /* this for each num */
 .num {
   width: 70px;
@@ -124,38 +130,53 @@ header .mes {
 
 }
 
-.num:hover{
-       background-color: #45a049;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+.num:hover {
+   background: #1f77b4;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 
 }
 
 #btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 12px;
+  
+  width: 250px;
+  margin: 15px auto;
+  margin-bottom: 1px;;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #1f77b4;
+  color: white;
+  transition: 0.3s;
 }
 
 #btn:hover {
-    background-color: #45a049;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+background: #1d4ed8;
+
 }
-button {
-  background: transparent;
+
+.back {
+  
+  margin: auto;
+  width: 250px;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: #1f77b4;
   border: none;
-  padding: 0;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 20px;
- 
+  transition: 0.3s;
 }
+
+.back:hover {
+  background: #1d4ed8;
+}
+
+
 .stop {
   background: transparent;
   border: none;
@@ -163,8 +184,9 @@ button {
   cursor: pointer;
   font-size: 20px;
 }
-#Stop{
-   display: none;
+
+#Stop {
+  display: none;
 
 
 }
