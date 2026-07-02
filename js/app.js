@@ -1,40 +1,47 @@
+/*------------------------ Cached Element References ------------------------*/
+
 const boardEl = document.querySelector('.board');
 const Mistakec = document.querySelector('.Mistakes');
 const timerEl = document.querySelector('.time');
 const stopTimerEl = document.querySelectorAll('.stop');
-
 const btn = document.querySelector('#btn')
 const messageEl = document.querySelector('.mes')
+
+
 
 /// create board 
 let c = 1;
 for (let i = 1; i <= 9; i++) {
-
-
+    
+    
     let r = 1;
     for (let j = 1; j <= 9; j++) {
         //    this for give each cell  box index
         if ((c >= 1 && c <= 3) || (9 * c >= 10 && 9 * c + 3 <= 12) || (c >= 19 && c <= 21)) { r = 1; }
         else if ((c >= 4 && c <= 6) || (c >= 13 && c <= 15) || (c >= 22 && c <= 24)) { r = 2; }
         else if ((c >= 7 && c <= 9) || (c >= 16 && c <= 18) || (c >= 25 && c <= 27)) { r = 3; }
-
+        
         else if ((c >= 28 && c <= 30) || (c >= 37 && c <= 39) || (c >= 46 && c <= 48)) { r = 4; }
         else if ((c >= 31 && c <= 33) || (c >= 40 && c <= 42) || (c >= 49 && c <= 51)) { r = 5; }
         else if ((c >= 34 && c <= 34) || (c >= 43 && c <= 45) || (c >= 52 && c <= 52)) { r = 6; }
-
+        
         else if ((c >= 55 && c <= 57) || (c >= 64 && c <= 66) || (c >= 73 && c <= 75)) { r = 7; }
         else if ((c >= 58 && c <= 60) || (c >= 67 && c <= 69) || (c >= 76 && c <= 76)) { r = 8; }
         else if ((c >= 61 && c <= 63) || (c >= 70 && c <= 72) || (c >= 79 && c <= 81)) { r = 9; }
-
-
+        
+        
         boardEl.innerHTML += `<div id="${c}" class="sqr box${r} " > </div>`
-
+        
         c++
     }
-
-
-
+    
+    
+    
 }
+const squareEls = document.querySelectorAll('.sqr');
+const Numbers = document.querySelectorAll('.num');
+
+/*---------------------------- Variables (state) ----------------------------*/
 
 // board values 
 let boardQuations = [
@@ -69,13 +76,15 @@ const boardAnswer = [
 
 
 
-//  set time 
-
 let timer;
 let seconds = 0;
-let stopGame = false;
 let isPaused = false;
-//  this start timer /
+let selectdNumbers = null;
+let gameOver = false;
+let boxcolor;
+let mistake = [];
+
+/*-------------------------------- Functions --------------------------------*/
 function startTimer() {
     if (timer != null) return; // Already running
     timer = setInterval(() => {
@@ -91,6 +100,7 @@ function startTimer() {
             String(remainingSeconds).padStart(2, "0");
     }, 1000);
 }
+
 // / ths stop game  so the gameover 
 function stopTimerAndGame() {
     clearInterval(timer);
@@ -99,7 +109,8 @@ function stopTimerAndGame() {
 
 
 }
-//  this rest timer new game 
+
+//  this reset timer new game 
 function resetTimer() {
     clearInterval(timer);
 
@@ -110,7 +121,8 @@ function resetTimer() {
     timerEl.textContent = "Time :00:00";
     startTimer()
 }
-// this pause game  for rest ehen click the timer start when stop
+
+// this pause game  for rest when click the timer start when stop
 function pause() {
 
     if (!isPaused) {
@@ -129,22 +141,17 @@ function pause() {
 
 }
 
-const squareEls = document.querySelectorAll('.sqr');
-const Numbers = document.querySelectorAll('.num');
-
-let selectdNumbers = null;
 
 
 
-let gameOver = false;
-let boxcolor;
-let mistake = [];
-/*-------------------------------- Functions --------------------------------*/
+
 function updateMessage() {
 
     for (let i = 0; i < boardAnswer.length; i++) {
+             
+        // check all element
         if (Number(squareEls[i].textContent) !== boardAnswer[i]) {
-            return; // not finished yet
+            return;   
         }
     }
 
@@ -154,6 +161,7 @@ function updateMessage() {
     clearboldSelelcted()
     gameOver = true;
 }
+
 function updateBoard() {
     // loop through the board variable using forEach
 
@@ -195,9 +203,6 @@ function checkBoard(numb, ind) {
     }
 
 }
-
-
-
 
 
 
@@ -250,6 +255,7 @@ function Rest() {
 
 
 }
+
 function stopTimerFun(event) {
     clearHighlight()
     clearboldSelelcted()
@@ -292,6 +298,7 @@ function clearboldSelelcted() {
 
 
 }
+
 function boldSelelcted(event) {
 
     clearboldSelelcted()
@@ -309,7 +316,7 @@ function boldSelelcted(event) {
     )
 }
 
-let chackcopy;
+
 function clearHighlight() {
     squareEls.forEach(cell => {
         cell.style.backgroundColor = "#FFFFFF";
